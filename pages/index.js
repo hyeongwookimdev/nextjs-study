@@ -6,15 +6,7 @@ import Seo from "../components/Seo";
 export default function Home({ results }) {
   const router = useRouter();
   const onClick = (id, title) => {
-    router.push(
-      {
-        pathname: `/movies/${id}`,
-        query: {
-          title,
-        },
-      },
-      `/movies/${id}`
-    );
+    router.push(`/movies/${title}/${id}`);
   };
   return (
     <div className="container">
@@ -27,16 +19,7 @@ export default function Home({ results }) {
         >
           <img src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`} />
           <h4>
-            <Link
-              href={{
-                pathname: `/movies/${movie.id}`,
-                query: {
-                  title: movie.title,
-                },
-              }}
-              as={`/movies/${movie.id}`}
-              legacyBehavior
-            >
+            <Link href={`/movies/${movie.title}/${movie.id}`} legacyBehavior>
               <a>{movie.title}</a>
             </Link>
           </h4>
